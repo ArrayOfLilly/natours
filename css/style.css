@@ -6,6 +6,8 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/* reset browser behaviour */
 * {
   margin: 0;
   padding: 0;
@@ -23,6 +25,7 @@ body {
 
 .header {
   height: 95vh;
+  /* gradient layer on top of an image */
   background-image: linear-gradient(
       to right bottom,
       rgba(126, 213, 111, 0.8),
@@ -31,6 +34,7 @@ body {
     url(../img/hero.jpg);
   background-size: cover;
   background-position: top;
+  /* for absolute positioning child elements, eg. logo-box */
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
@@ -47,16 +51,18 @@ body {
 
 .text-box {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
+  /* for placing in the middle indeepndently of the ancestor's context */
   transform: translate(-50%, -50%);
+  /* inner text placement, eg. btn-white in header */
   text-align: center;
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
-
+  /* avoid weird shaking during h1 animations */
   backface-visibility: hidden;
   margin-bottom: 60px;
 }
@@ -81,9 +87,7 @@ body {
   font-weight: 700;
   letter-spacing: 17.4px;
 
-  animation-name: moveInRight;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
+  animation: moveInRight 1s ease-out;
 }
 
 @keyframes moveInLeft {
@@ -137,7 +141,9 @@ body {
   padding: 15px 40px;
   display: inline-block;
   border-radius: 100px;
+  /* in the main section of the elements */
   transition: all 0.2s;
+  /* this is the reference point for positioning the btn:after */
   position: relative;
 }
 
@@ -162,9 +168,11 @@ body {
   height: 100%;
   width: 100%;
   border-radius: 100px;
+  /* positioning the copy under the first btn instance instead of after */
   position: absolute;
   top: 0;
   left: 0;
+  /* force under the btn in the stacking order */
   z-index: -1;
   transition: all 0.4s;
 }
@@ -176,6 +184,11 @@ body {
 .btn:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
-  animation: moveInBottom 0.4 ease-out 0.75;
+}
+
+.btn-animated {
+  /* shorthad: animation name, timing, timing function, delay */
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  /* The animation will apply the values defined in the first relevant keyframe as soon as it is applied to the target, and retain this during the animation-delay period. */
   animation-fill-mode: backwards;
 }

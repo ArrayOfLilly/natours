@@ -1,2 +1,3 @@
 # natours
-landing page
+
+responsive landing page for Natours

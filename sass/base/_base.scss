@@ -1,0 +1,21 @@
+/* reset browser behaviour */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* for easy calculations for rem */
+  /* percent of browser default font size to respect the user's settings */
+  /* font-size: 10px; */
+  /* this defines what rem is */
+  font-size: 62.5%;
+}
+
+body {
+  padding: 3rem;
+  box-sizing: border-box;
+}

@@ -1,0 +1,62 @@
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    /* in the main section of the elements */
+    transition: all 0.2s;
+    /* this is the reference point for positioning the btn:after */
+    position: relative;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    /* positioning the copy under the first btn instance instead of after */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* force under the btn in the stacking order */
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    /* shorthad: animation name, timing, timing function, delay */
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    /* The animation will apply the values defined in the first relevant keyframe 
+    as soon as it is applied to the target, 
+    and retain this during the animation-delay period. */
+    animation-fill-mode: backwards;
+  }
+}

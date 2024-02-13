@@ -3,20 +3,28 @@
   margin: 0 auto;
   box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
   background-color: rgba($color-white, 0.6);
-  border-radius: 3px;
+  border-radius: $border-radius-container;
   padding: 6rem;
+  // correct the margin after translateX(-3rem) the shape
   padding-left: 9rem;
+
   font-size: $default-font-size;
   transform: skewX(-12deg);
 
   &__shape {
+    // these two param define the region in which we can draw our vector shape with shape-outside
     width: 15rem;
     height: 15rem;
+    // it cause the wrap for the shape-outside
     float: left;
+    // defines a shape around which adjacent inline content should wrap, this make the wrapping, we need the shape next
     -webkit-shape-outside: circle(50% at 50% 50%);
     shape-outside: circle(50% at 50% 50%);
+    // the shape inside the wrap
     -webkit-clip-path: circle(50% at 50% 50%);
     clip-path: circle(50% at 50% 50%);
+    // margin for wrap and correct the skew after skewing the outer story element
+    // (if we apply the skewX on the direct childs of story element, it doesn't apply here, because we already have a transform property applied)
     transform: translateX(-3rem) skewX(12deg);
     position: relative;
   }
@@ -27,6 +35,7 @@
   }
 
   &__text {
+    // see in the description of the &__shape
     transform: skewX(12deg);
   }
 

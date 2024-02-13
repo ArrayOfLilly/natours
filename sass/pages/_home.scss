@@ -32,3 +32,35 @@
   position: relative;
   padding: 15rem 0;
 }
+
+// the not reusable parts of the section
+.section-booking {
+  padding: 15rem 0;
+  background-image: linear-gradient(
+    to right bottom,
+    $color-primary-light,
+    $color-primary-dark
+  );
+}
+
+.book {
+  // two color at the same percentage makes a breakline
+  background-image: linear-gradient(
+      105deg,
+      rgba($color-white, 0.85) 0%,
+      rgba($color-white, 0.85) 50%,
+      transparent 50%
+    ),
+    url(../img/nat-10.jpg);
+  background-size: 100%;
+  border-radius: $border-radius-container;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+  height: 50rem;
+
+  // container for form on the left of parent container
+  &__form {
+    width: 50%;
+    padding: 6rem;
+  }
+}

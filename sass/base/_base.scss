@@ -12,10 +12,26 @@ html {
   /* percent of browser default font size to respect the user's settings */
   /* font-size: 10px; */
   /* this defines what rem is */
-  font-size: 62.5%;
+  font-size: 62.5%; // 1rem = 10px, 10/16 = 62,5%
+
+  @include respond(tab-land) {
+    font-size: 56, 2%; // 1rem = 9px, 9/16 = 56,2%
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%; // 1rem = 10px, 10/16 = 50px
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; // 1 rem = 12px, 12/16 = 75%
+  }
 }
 
 body {
-  padding: 3rem;
   box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
 }

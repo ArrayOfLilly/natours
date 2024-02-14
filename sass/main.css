@@ -1,3 +1,19 @@
+/*
+0 - 600px:    Phone
+600-900px:    Tablet portrait
+900-1200px:   Tablet landscape
+[1200-1800] is where normal style apply
+1800px-:      Big desktop
+*/
+/*
+$breakpoint argument choices:
+- phone
+- tab-port
+- tap-land
+- big-desktop
+
+ORDER: Base > typography > general layout > grid > page layout > components
+*/
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -50,10 +66,30 @@ html {
   /* this defines what rem is */
   font-size: 62.5%;
 }
+@media (max-width: 75em) {
+  html {
+    font-size: 56, 2%;
+  }
+}
+@media (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
+}
 
 body {
-  padding: 3rem;
   box-sizing: border-box;
+  padding: 3rem;
+}
+@media (max-width: 56.25em) {
+  body {
+    padding: 0;
+  }
 }
 
 body {
@@ -84,12 +120,24 @@ body {
   animation-iteration-count: 3;
   */
 }
+@media (max-width: 37.5em) {
+  .heading-primary--main {
+    letter-spacing: 1rem;
+    font-size: 5rem;
+  }
+}
 .heading-primary--sub {
   display: block;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 1.75rem;
   animation: moveInRight 1s ease-out;
+}
+@media (max-width: 37.5em) {
+  .heading-primary--sub {
+    letter-spacing: 0.5rem;
+    font-size: 2rem;
+  }
 }
 
 .heading-secondary {

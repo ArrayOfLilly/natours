@@ -23,11 +23,22 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.25);
     transition: all 0.4s 0.2s;
+
+    @media (max-width: 1250px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__left {
     width: 33.333333%;
     display: table-cell;
+
+    @media (max-width: 1250px) {
+      width: 100%;
+      display: flex;
+    }
   }
 
   &__right {
@@ -40,6 +51,11 @@
   &__img {
     display: block;
     width: 100%;
+
+    @media (max-width: 1250px) {
+      display: inline-block;
+      width: 50%;
+    }
   }
 
   &__text {
@@ -82,11 +98,21 @@
       display: inline-block;
       transition: al 0.2s;
       line-height: 1;
+
+      @media (max-width: 1250px) {
+        color: $color-grey-dark-3;
+        font-weight: 300;
+      }
     }
 
     &:hover,
     &:active {
       color: $color-primary;
+
+      @media (max-width: 1250px) {
+        color: $color-white;
+        font-weight: 400;
+      }
     }
   }
 }

@@ -1,87 +1,94 @@
 .story {
-  width: 75%;
-  margin: 0 auto;
-  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
-  background-color: rgba($color-white, 0.6);
-  border-radius: $border-radius-container;
-  padding: 6rem;
-  // correct the margin after translateX(-3rem) the shape
-  padding-left: 9rem;
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+    background-color: rgba($color-white, 0.6);
+    border-radius: $border-radius-container;
+    padding: 6rem;
+    // correct the margin after translateX(-3rem) the shape
+    padding-left: 9rem;
 
-  font-size: $default-font-size;
-  transform: skewX(-12deg);
+    font-size: $default-font-size;
+    transform: skewX(-12deg);
 
-  @include respond(tab-port) {
-    width: 100%;
-    padding: 4rem;
-    padding-left: 7rem;
-  }
-
-  @include respond(phone) {
-    transform: skewX(0);
-  }
-
-  &__shape {
-    // these two param define the region in which we can draw our vector shape with shape-outside
-    width: 15rem;
-    height: 15rem;
-    // it cause the wrap for the shape-outside
-    float: left;
-    // defines a shape around which adjacent inline content should wrap, this make the wrapping, we need the shape next
-    -webkit-shape-outside: circle(50% at 50% 50%);
-    shape-outside: circle(50% at 50% 50%);
-    // the shape inside the wrap
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%);
-    // margin for wrap and correct the skew after skewing the outer story element
-    // (if we apply the skewX on the direct childs of story element, it doesn't apply here, because we already have a transform property applied)
-    transform: translateX(-3rem) skewX(12deg);
-    position: relative;
+    @include respond(tab-port) {
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
 
     @include respond(phone) {
-      transform: translateX(-3rem) skewX(0);
+        transform: skewX(0);
     }
-  }
 
-  &__img {
-    height: 100%;
-    transform: translateX(-4rem) scale(1.4);
+    &__shape {
+        // these two param define the region in which we can draw our vector shape with shape-outside
+        width: 15rem;
+        height: 15rem;
+        // it cause the wrap for the shape-outside
+        float: left;
+        // if clip-path doesn't works, control the image
+        overflow: hidden;
+        border-radius: 50%;
+        // margin for wrap and correct the skew after skewing the outer story element
+        // (if we apply the skewX on the direct childs of story element, it doesn't apply here, because we already have a transform property applied)
+        transform: translateX(-3rem) skewX(12deg);
+        position: relative;
 
-    @include respond(phone) {
-      transform: translateX(-4rem) skewX(0);
+        @supports ((-webkit-clip-path: polygon(0 0)) or (clip-path: polygon(0 0))) {
+            // the shape inside the wrap
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            // defines a shape around which adjacent inline content should wrap, this make the wrapping, we need the shape next
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);
+            border-radius: none;
+        }
+
+        @include respond(phone) {
+            transform: translateX(-3rem) skewX(0);
+        }
     }
-  }
 
-  &__text {
-    // see in the description of the &__shape
-    transform: skewX(12deg);
+    &__img {
+        height: 100%;
+        transform: translateX(-4rem) scale(1.4);
 
-    @include respond(phone) {
-      transform: skewX(0);
+        @include respond(phone) {
+            transform: translateX(-4rem) skewX(0);
+        }
     }
-  }
 
-  &__caption {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 20%);
-    color: $color-white;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 1.7rem;
-    opacity: 0;
-    transition: all 0.5s;
-    backface-visibility: hidden;
-  }
+    &__text {
+        // see in the description of the &__shape
+        transform: skewX(12deg);
 
-  &:hover &__caption {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
+        @include respond(phone) {
+            transform: skewX(0);
+        }
+    }
 
-  &:hover &__img {
-    transform: translateX(-4rem) scale(1);
-    filter: blur(3px) brightness(80%);
-  }
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: $color-white;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 1.7rem;
+        opacity: 0;
+        transition: all 0.5s;
+        backface-visibility: hidden;
+    }
+
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);
+        filter: blur(3px) brightness(80%);
+    }
 }

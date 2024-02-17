@@ -91,6 +91,10 @@ body {
     padding: 0;
   }
 }
+body ::selection {
+  color: #fff;
+  background-color: #55c57a;
+}
 
 body {
   font-family: "Lato", sans-serif;
